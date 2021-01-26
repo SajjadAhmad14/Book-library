@@ -8,7 +8,7 @@ function Book(title, author, pages, read) {
 }
 
 // Adding book
-function addBookToLibrary(e) {
+const addBookToLibrary = (e) => {
   const title = document.getElementById('title').value;
   const author = document.getElementById('author').value;
   const pages = document.getElementById('pages').value;
@@ -24,7 +24,7 @@ function addBookToLibrary(e) {
 }
 
 // Displaying book to the UI
-function displayBook(book) {
+const displayBook = (book) => {
   if (myLibrary.length === 1) {
     const tbl = document.getElementById('table');
     const thead = document.createElement('thead');
@@ -63,11 +63,11 @@ function displayBook(book) {
 }
 
 // Add book form display function
-function showForm() {
+const showForm = () => {
   document.getElementById('form').style.display = 'block';
 }
 
-function hideForm() {
+const hideForm = () => {
   document.getElementById('form').style.display = 'none';
 }
 
@@ -75,7 +75,7 @@ document.getElementById('add-book').addEventListener('click', showForm);
 document.getElementById('form').addEventListener('submit', addBookToLibrary);
 // delete a book
 
-function deleteBook(ele) {
+const deleteBook = (ele) => {
   if (ele.classList.contains('delete')) {
     ele.parentElement.parentElement.remove();
   }
@@ -86,7 +86,7 @@ document.querySelector('#book-list').addEventListener('click', (e) => {
 });
 
 // Update status
-function changeReadStatus(ele) {
+const changeReadStatus = (ele) => {
   if (ele.textContent === 'Yes') {
     ele.textContent = 'No';
     return ele.textContent;
