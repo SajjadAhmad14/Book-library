@@ -2,12 +2,25 @@
 /* eslint-disable no-unused-vars */
 const myLibrary = [];
 
-// Book constructor
+// Book factory function
 function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
+  return {title, author, pages, read};
+}
+
+// Adding book
+function addBookToLibrary(e) {
+  const title = document.getElementById('title').value;
+  const author = document.getElementById('author').value;
+  const pages = document.getElementById('pages').value;
+  const read = (function () {
+    if (document.getElementById('yes').checked) return document.getElementById('yes').value;
+    return document.getElementById('no').value;
+  }());
+  const book = Book(title, author, pages, read);
+  myLibrary.push(book);
+  e.preventDefault();
+  document.getElementById('form').reset();
+  displayBook(book);
 }
 
 // Displaying book to the UI
@@ -49,30 +62,10 @@ function displayBook(book) {
   list.appendChild(row);
 }
 
-// Adding book
-function addBookToLibrary(e) {
-  const title = document.getElementById('title').value;
-  const author = document.getElementById('author').value;
-  const pages = document.getElementById('pages').value;
-  const read = (function () {
-    if (document.getElementById('yes').checked) return document.getElementById('yes').value;
-    return document.getElementById('no').value;
-  }());
-  const book = new Book(title, author, pages, read);
-  myLibrary.push(book);
-
-  e.preventDefault();
-  // Clearing the form input data after submit
-  document.getElementById('form').reset();
-  // myLibrary.forEach(displayBook(book));
-  displayBook(book);
-}
-
 // Add book form display function
 function showForm() {
   document.getElementById('form').style.display = 'block';
 }
-
 
 function hideForm() {
   document.getElementById('form').style.display = 'none';
