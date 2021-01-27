@@ -3,8 +3,13 @@
 const myLibrary = [];
 
 // Book factory function
-function Book(title, author, pages, read) {
-  return {title, author, pages, read};
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages, pages;
+    this.read = read;
+  }
 }
 
 // Adding book
@@ -16,7 +21,7 @@ const addBookToLibrary = (e) => {
     if (document.getElementById('yes').checked) return document.getElementById('yes').value;
     return document.getElementById('no').value;
   }());
-  const book = Book(title, author, pages, read);
+  const book = new Book(title, author, pages, read);
   myLibrary.push(book);
   e.preventDefault();
   document.getElementById('form').reset();
